@@ -1,20 +1,13 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Hero, Services, About, Process, Audiences, Contact } from './components/Sections';
+import type { Page } from './routes';
 
-export default function App() {
+export default function App({ page }: { page: Page }) {
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
-      <Header />
-      <main id="main">
-        <Hero />
-        <Services />
-        <About />
-        <Process />
-        <Audiences />
-        <Contact />
-      </main>
+      <Header path={page.path} />
+      <main id="main">{page.body()}</main>
       <Footer />
     </>
   );

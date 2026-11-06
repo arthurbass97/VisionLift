@@ -1,0 +1,40 @@
+# Local Apache only (Cloudflare ignores this file — see .assetsignore).
+# Mirrors how Cloudflare serves the site.
+
+# Unknown addresses get the pre-rendered 404 page with a real 404 status.
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# Don't add a trailing slash to folder names: /services is a page (services.html),
+# even though a services/ folder also exists for the individual service pages.
+DirectorySlash Off
+
+# Don't re-run these rules on Apache's own internal redirects (e.g. serving 404.html).
+RewriteCond %{ENV:REDIRECT_STATUS} !^$
+RewriteRule ^ - [L]
+
+# Pages are pre-rendered as about.html, services/website-design.html etc. and served
+# at /about and /services/website-design (no extension, no trailing slash), like on
+# Cloudflare and in the canonical URLs.
+#   /about.html -> 301 -> /about
+RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?]
+RewriteCond %1 !^(index|404)$
+RewriteRule ^ /%1 [R=301,L]
+#   /about/ -> 301 -> /about   (only where that page exists)
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+#   /about -> serve about.html
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([^.]+)$ /$1.html [END]
+
+# Folders (e.g. /assets) -> 404 rather than 403 or a directory listing.
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^ - [R=404,L]
+
+# `npm run watch` doesn't pre-render pages, so about.html etc. don't exist.
+# In that case only (no 404.html either), serve the app for the known pages and
+# let it render the right one. Keep this list in sync with src/routes.tsx.
+RewriteCond %{DOCUMENT_ROOT}/404.html !-f
+RewriteRule ^(services|how-we-work|about|contact|services/[a-z0-9-]+)$ /index.html [END]

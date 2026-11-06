@@ -8,6 +8,33 @@ const paths = {
     </>
   ),
   arrow: <path d="M12 19V5M5 12l7-7 7 7" />,
+  arrowRight: <path d="M5 12h14M13 5l7 7-7 7" />,
+  arrowUpRight: <path d="M7 17L17 7M8 7h9v9" />,
+  pin: (
+    <>
+      <path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </>
+  ),
+  check: <path d="M20 6L9 17l-5-5" />,
+  mobile: (
+    <>
+      <rect x="6" y="2" width="12" height="20" rx="2.5" />
+      <path d="M11 18h2" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="M20 20l-4-4" />
+    </>
+  ),
+  shield: (
+    <>
+      <path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z" />
+      <path d="M9 12l2 2 4-4" />
+    </>
+  ),
   screen: (
     <>
       <rect x="3" y="4" width="18" height="14" rx="2" />

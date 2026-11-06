@@ -6,7 +6,8 @@
     "command": "npm ci && npm run build"
   },
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "not_found_handling": "404-page"
   },
   "routes": [
     { "pattern": "visionlift.co.uk", "custom_domain": true },

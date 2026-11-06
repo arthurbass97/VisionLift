@@ -4,5 +4,9 @@
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./public"
-  }
+  },
+  "routes": [
+    { "pattern": "visionlift.co.uk", "custom_domain": true },
+    { "pattern": "www.visionlift.co.uk", "custom_domain": true }
+  ]
 }

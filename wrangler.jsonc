@@ -2,8 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vision-lift",
   "compatibility_date": "2026-11-01",
+  "build": {
+    "command": "npm ci && npm run build"
+  },
   "assets": {
-    "directory": "./public"
+    "directory": "./dist"
   },
   "routes": [
     { "pattern": "visionlift.co.uk", "custom_domain": true },

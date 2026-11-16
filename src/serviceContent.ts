@@ -32,10 +32,10 @@ export const services: Service[] = [
     icon: 'screen',
     title: 'Website design & development',
     text: 'Custom websites designed around your customers — fast, responsive and easy to update.',
-    metaTitle: 'Website Design & Development in Clitheroe',
-    metaDescription: 'Custom website design and development in Clitheroe, Lancashire. Fast, responsive, search-friendly websites built around your customers. Fixed-price quotes.',
+    metaTitle: 'Website Design & Development',
+    metaDescription: 'Custom website design and development for businesses across the UK. Fast, responsive, search-friendly websites built around your customers. Fixed-price quotes.',
     headline: 'Website design & development',
-    intro: 'Fast, modern websites designed around your customers and built to turn visitors into enquiries — for businesses in Clitheroe, across Lancashire and throughout the UK.',
+    intro: 'Fast, modern websites designed around your customers and built to turn visitors into enquiries — for businesses across the UK.',
     overview: [
       'Your website is often the first impression people have of your business. We design and build custom websites that explain what you do clearly, look great on every device and make it easy for visitors to get in touch, buy or book.',
       "Every site starts with your goals and your customers, not a template. We plan the structure and content with you, design each page around what people need to find, then build it with modern, well-tested code that's fast to load and easy to look after.",
@@ -71,7 +71,7 @@ export const services: Service[] = [
     title: 'Mobile app development',
     text: 'iOS and Android apps that feel at home on every device, from prototype to app store.',
     metaTitle: 'Mobile App Development in Lancashire',
-    metaDescription: 'iOS and Android app development from Vision Lift in Clitheroe, Lancashire. From idea and prototype through to app store launch and ongoing support.',
+    metaDescription: 'iOS and Android app development from Vision Lift, based in Clitheroe, Lancashire. From idea and prototype through to app store launch and ongoing support.',
     headline: 'Mobile app development',
     intro: 'iOS and Android apps that are simple to use, reliable and built to grow with your business — taken from first idea through to the app stores.',
     overview: [
@@ -108,7 +108,7 @@ export const services: Service[] = [
     title: 'UI & UX design',
     text: 'Clear, intuitive interfaces shaped by how your customers actually think and behave.',
     metaTitle: 'UI & UX Design Services in Lancashire',
-    metaDescription: 'UI and UX design from Vision Lift in Clitheroe, Lancashire. Clear, intuitive website and app interfaces shaped around how your customers think and behave.',
+    metaDescription: 'UI and UX design from Vision Lift, based in Clitheroe, Lancashire. Clear, intuitive website and app interfaces shaped around how your customers think and behave.',
     headline: 'UI & UX design',
     intro: 'Clear, intuitive designs for websites and apps, shaped around how your customers think and behave — so they find what they need and take action.',
     overview: [
@@ -142,8 +142,8 @@ export const services: Service[] = [
     icon: 'search',
     title: 'SEO & performance',
     text: 'Speed, accessibility and technical SEO improvements that help the right people find you.',
-    metaTitle: 'SEO & Website Performance in Clitheroe',
-    metaDescription: 'Technical SEO, site speed and accessibility improvements from Vision Lift in Clitheroe, Lancashire. Help the right people find your business online.',
+    metaTitle: 'SEO & Website Performance',
+    metaDescription: 'Technical SEO, site speed and accessibility improvements from Vision Lift, based in Clitheroe, Lancashire. Help the right people find your business online.',
     headline: 'SEO & performance',
     intro: 'Technical SEO, speed and accessibility improvements that help search engines understand your site, and help the right customers find you.',
     overview: [
@@ -179,7 +179,7 @@ export const services: Service[] = [
     title: 'Support & maintenance',
     text: 'Updates, security checks and ongoing improvements, so your site keeps working for you.',
     metaTitle: 'Website Support & Maintenance in Lancashire',
-    metaDescription: 'Website and app support from Vision Lift in Clitheroe, Lancashire. Updates, security checks, backups, fixes and ongoing improvements, all handled for you.',
+    metaDescription: 'Website and app support from Vision Lift, based in Clitheroe, Lancashire. Updates, security checks, backups, fixes and ongoing improvements, all handled for you.',
     headline: 'Support & maintenance',
     intro: "Updates, security checks and ongoing improvements, so your website or app stays fast, secure and up to date — without you having to think about it.",
     overview: [

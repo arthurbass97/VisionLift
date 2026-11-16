@@ -18,8 +18,8 @@ const brand = 'Vision Lift';
 export const pages: Page[] = [
   {
     path: '/',
-    title: `Web Design & App Development in Clitheroe | ${brand}`,
-    description: `Web design and app development in Clitheroe, Lancashire. Vision Lift designs and builds fast, modern websites and mobile apps. Call ${contact.phoneLabel}.`,
+    title: `Web Design & App Development Studio | ${brand}`,
+    description: `Vision Lift is a web design and app development studio based in Clitheroe, Lancashire. We design and build fast, modern websites and mobile apps for businesses across the UK. Call ${contact.phoneLabel}.`,
     body: () => (
       <>
         <Hero />
@@ -33,7 +33,7 @@ export const pages: Page[] = [
   {
     path: '/services',
     title: `Web & App Development Services in Lancashire | ${brand}`,
-    description: 'Website design, mobile app development, UI & UX, SEO and support from Vision Lift, a digital agency in Clitheroe, Lancashire.',
+    description: 'Website design, mobile app development, UI & UX, SEO and support from Vision Lift, a digital agency based in Clitheroe, Lancashire, working with businesses across the UK.',
     body: () => (
       <>
         <PageHeader crumb="Services" path="/services" title={servicesIntro.title} lead={servicesIntro.lead} />
@@ -56,8 +56,8 @@ export const pages: Page[] = [
   },
   {
     path: '/about',
-    title: `About Us – Clitheroe Web Design Studio | ${brand}`,
-    description: 'Vision Lift is a web and mobile studio in Clitheroe, Lancashire, with 10+ years of experience designing and building websites and apps.',
+    title: `About Us – Web & App Design Studio | ${brand}`,
+    description: 'Vision Lift is a web and mobile studio based in Clitheroe, Lancashire, with 10+ years of experience designing and building websites and apps.',
     body: () => (
       <>
         <PageHeader crumb="About" path="/about" title={about.title} lead={about.intro} />

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "typecheck": "tsc",
-    "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "typecheck": "tsc && tsc -p worker",
+    "build": "tsc && tsc -p worker && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "watch": "vite build --watch",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy"

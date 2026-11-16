@@ -94,7 +94,7 @@ export default function Header({ path }: { path: string }) {
           </button>
 
           <a className="brand" href="/" aria-label="Vision Lift home">
-            <img src="/assets/logo-light-480.webp" alt="Vision Lift" width="480" height="122" />
+            <img src="/assets/logo-light-480.webp?v=4" alt="Vision Lift" width="480" height="122" />
           </a>
 
           <nav className="site-nav" aria-label="Main">
@@ -133,7 +133,7 @@ export default function Header({ path }: { path: string }) {
         <div className="mobile-menu-inner">
           <div className="mobile-menu-top">
             <a className="brand" href="/" aria-label="Vision Lift home" onClick={close}>
-              <img src="/assets/logo-light-480.webp" alt="Vision Lift" width="480" height="122" />
+              <img src="/assets/logo-light-480.webp?v=4" alt="Vision Lift" width="480" height="122" />
             </a>
             <button ref={closeRef} className="mobile-close" type="button" aria-label="Close menu" onClick={close}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">

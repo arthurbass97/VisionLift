@@ -20,7 +20,6 @@ export default function ServicePage({ service }: { service: Service }) {
     url: siteUrl + path,
     provider: { '@id': `${siteUrl}/#business` },
     areaServed: [
-      { '@type': 'City', name: 'Clitheroe' },
       { '@type': 'AdministrativeArea', name: 'Lancashire' },
       { '@type': 'Country', name: 'United Kingdom' },
     ],

@@ -1,4 +1,5 @@
 import Breadcrumbs, { type Crumb } from './Breadcrumbs';
+import ContactForm from './ContactForm';
 import Icon from './Icon';
 import {
   about, audiences, contact, contactPage, footer, hero, processIntro, services, servicesIntro, steps,
@@ -24,7 +25,7 @@ function DeviceMock() {
               <b style={{ width: '52%' }} />
               <s style={{ width: '38%' }} />
             </div>
-            <img src="/assets/icon-512.webp" alt="" width="512" height="512" />
+            <img src="/assets/icon-512.webp?v=4" alt="" width="512" height="512" />
           </div>
           <div className="mock-grid">
             <span /><span /><span />
@@ -188,14 +189,14 @@ export function AboutDetails({ onHome = false }: { onHome?: boolean }) {
 
           {basedIn && (
             <article className="tile tile-place">
-              <Icon name="pin" />
-              <span className="stat-label">Based in</span>
-              <span className="place">{basedIn}</span>
+              <span className="stat-label place-label"><Icon name="pin" />Based in</span>
+              <span className="place">{basedIn.split(',')[0]}</span>
+              <span className="place-sub">{basedIn.includes(',') ? `${basedIn.split(',').slice(1).join(',').trim()}, UK` : 'UK'}</span>
             </article>
           )}
 
           <article className="tile tile-tagline">
-            <img src="/assets/icon-512.webp" alt="" width="512" height="512" />
+            <img src="/assets/icon-512.webp?v=4" alt="" width="512" height="512" />
             <p>{footer.tagline}</p>
           </article>
 
@@ -242,41 +243,50 @@ export function ContactDetails({ onHome = false }: { onHome?: boolean }) {
         </div>
       )}
       <div className="wrap contact-grid">
-        <div className="contact-cards">
-          <a className="contact-card contact-card-main" href={`mailto:${contact.email}`}>
-            <span className="contact-card-icon"><Icon name="mail" /></span>
-            <span className="contact-card-label">Email us</span>
-            <span className="contact-card-value">{contact.email}</span>
-            <Icon name="arrowUpRight" />
-          </a>
-          <a className="contact-card" href={contact.phoneHref}>
-            <span className="contact-card-icon"><Icon name="phone" /></span>
-            <span className="contact-card-label">Call us</span>
-            <span className="contact-card-value">{contact.phoneLabel}</span>
-          </a>
-          {basedIn && (
-            <div className="contact-card">
-              <span className="contact-card-icon"><Icon name="pin" /></span>
-              <span className="contact-card-label">Based in</span>
-              <span className="contact-card-value">{basedIn}</span>
-            </div>
-          )}
-        </div>
+        <ContactForm />
 
-        <aside className="next-steps" aria-labelledby="next-steps-title">
-          <h2 id="next-steps-title">What happens next</h2>
-          <ol>
-            {contactPage.nextSteps.map((s, i) => (
-              <li key={s.title}>
-                <span className="next-num">{pad(i + 1)}</span>
-                <div>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </aside>
+        <div className="contact-side">
+          <aside className="next-steps" aria-labelledby="next-steps-title">
+            <h2 id="next-steps-title">What happens next</h2>
+            <ol>
+              {contactPage.nextSteps.map((s, i) => (
+                <li key={s.title}>
+                  <span className="next-num">{pad(i + 1)}</span>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </aside>
+
+          <div className="contact-cards">
+            <a className="contact-card" href={`mailto:${contact.email}`}>
+              <span className="contact-card-icon"><Icon name="mail" /></span>
+              <span className="contact-card-text">
+                <span className="contact-card-label">Email us</span>
+                <span className="contact-card-value">{contact.email}</span>
+              </span>
+            </a>
+            <a className="contact-card" href={contact.phoneHref}>
+              <span className="contact-card-icon"><Icon name="phone" /></span>
+              <span className="contact-card-text">
+                <span className="contact-card-label">Call us</span>
+                <span className="contact-card-value">{contact.phoneLabel}</span>
+              </span>
+            </a>
+            {basedIn && (
+              <div className="contact-card">
+                <span className="contact-card-icon"><Icon name="pin" /></span>
+                <span className="contact-card-text">
+                  <span className="contact-card-label">Based in</span>
+                  <span className="contact-card-value">{basedIn}</span>
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

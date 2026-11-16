@@ -2,15 +2,40 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vision-lift",
   "compatibility_date": "2026-11-01",
+  // The Worker only handles the contact form (/api/*); everything else is served straight from dist/.
+  "main": "worker/index.ts",
   "build": {
     "command": "npm ci && npm run build"
   },
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
   },
   "routes": [
     { "pattern": "visionlift.co.uk", "custom_domain": true },
     { "pattern": "www.visionlift.co.uk", "custom_domain": true }
-  ]
+  ],
+  // Contact form submissions are stored here (free D1 / SQLite database).
+  // Create it in the dashboard (Storage & databases → D1 → Create) named "vision-lift-enquiries"
+  // and paste its Database ID below. The table is created automatically on the first submission.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vision-lift-enquiries",
+      "database_id": "e6b95757-5fc2-4357-af85-4c2e761d67d7"
+    }
+  ],
+  // Each enquiry is also emailed to you via Email Routing. The address must be a *verified*
+  // destination address in Email Routing → Destination addresses.
+  "send_email": [
+    {
+      "name": "ENQUIRY_EMAIL",
+      "destination_address": "arthurjamesbass@gmail.com"
+    }
+  ],
+  "vars": {
+    "ENQUIRY_TO": "arthurjamesbass@gmail.com"
+  }
 }

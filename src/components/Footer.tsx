@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-inner">
           <div className="footer-brand">
-            <img src="/assets/logo-dark-480.webp" alt="Vision Lift" width="480" height="122" />
+            <img src="/assets/logo-dark-480.webp?v=4" alt="Vision Lift" width="480" height="122" />
             <p>{footer.tagline}</p>
           </div>
           <nav aria-label="Footer">

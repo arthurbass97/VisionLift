@@ -10,8 +10,8 @@ export const siteUrl = 'https://visionlift.co.uk';
 
 export const contact = {
   email: 'hello@visionlift.co.uk',
-  phoneLabel: '07553 459129',
-  phoneHref: 'tel:+447553459129',
+  phoneLabel: '07572 406496',
+  phoneHref: 'tel:+447572406496',
 };
 
 export const navLinks: NavLink[] = [
@@ -25,7 +25,7 @@ export const navLinks: NavLink[] = [
 export const hero = {
   title: 'Websites and apps that',
   titleAccent: 'lift your business',
-  lead: 'Vision Lift designs and builds fast, modern websites and mobile apps for businesses in Clitheroe, across Lancashire and throughout the UK — from first idea to launch and beyond.',
+  lead: 'Vision Lift designs and builds fast, modern websites and mobile apps for businesses across the UK, from first idea to launch and beyond.',
 };
 
 export const servicesIntro = {
@@ -40,7 +40,7 @@ export const about: {
   title: string; intro: string; storyTitle: string; paragraphs: string[]; facts: [label: string, value: string][];
 } = {
   title: 'Design and development with a clear vision',
-  intro: 'Vision Lift is a web and mobile studio based in Clitheroe, Lancashire, helping businesses look sharp online and grow with confidence.',
+  intro: 'Vision Lift is a web and mobile studio based in Clitheroe, Lancashire, helping businesses across the UK look sharp online and grow with confidence.',
   storyTitle: 'Who we are',
   paragraphs: [
     "With more than ten years designing and building for the web, we've learned what makes a site succeed: a clear message, a fast and friendly experience, and solid code underneath.",

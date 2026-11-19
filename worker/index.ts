@@ -24,6 +24,7 @@ interface Env {
 const FROM_ADDRESS = 'website@visionlift.co.uk';
 const MAX_PER_HOUR = 5; // per IP address
 const MIN_FILL_MS = 3000; // humans take longer than this to fill the form in
+const MAX_BODY_BYTES = 32 * 1024;
 
 const LIMITS = { name: 100, email: 200, phone: 40, service: 100, message: 5000 };
 
@@ -59,9 +60,27 @@ export default {
 };
 
 async function handleContact(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  // Only accept the form as our own page sends it: JSON, from our own site. This stops other
+  // websites posting to the endpoint through their visitors' browsers (a plain HTML form
+  // can't send application/json, and browsers always send the real Origin).
+  if (!(request.headers.get('Content-Type') ?? '').toLowerCase().startsWith('application/json')) {
+    return json({ ok: false, error: 'Invalid request.' }, 415);
+  }
+  const origin = request.headers.get('Origin');
+  if (origin && origin !== new URL(request.url).origin) {
+    return json({ ok: false, error: 'Invalid request.' }, 403);
+  }
+  // Refuse oversized bodies before reading them (the real form is well under this).
+  if (Number(request.headers.get('Content-Length') ?? 0) > MAX_BODY_BYTES) {
+    return json({ ok: false, error: 'Your message is too long.' }, 413);
+  }
+
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    const text = await request.text();
+    if (text.length > MAX_BODY_BYTES) return json({ ok: false, error: 'Your message is too long.' }, 413);
+    body = JSON.parse(text);
+    if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error('not an object');
   } catch {
     return json({ ok: false, error: 'Invalid request.' }, 400);
   }
@@ -76,13 +95,15 @@ async function handleContact(request: Request, env: Env, ctx: ExecutionContext):
   // Spam traps: a hidden field only bots fill in, and a form submitted impossibly fast.
   // Pretend it worked so bots don't learn anything.
   const startedAt = Number(body.startedAt);
-  if (String(body.website ?? '') !== '' || (Number.isFinite(startedAt) && Date.now() - startedAt < MIN_FILL_MS)) {
+  // A missing or invalid start time counts as a bot too: the real form always sends one.
+  if (String(body.website ?? '') !== '' || !Number.isFinite(startedAt) || Date.now() - startedAt < MIN_FILL_MS) {
     return json({ ok: true });
   }
 
   const errors: Record<string, string> = {};
   if (!name) errors.name = 'Please tell us your name.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Please enter a valid email address.';
+  // No spaces, quotes, brackets, commas or semicolons, so it can't add extra addresses to Reply-To.
+  if (!/^[^\s@<>()",;:\\[\]]+@[^\s@<>()",;:\\[\]]+\.[^\s@<>()",;:\\[\]]+$/.test(email)) errors.email = 'Please enter a valid email address.';
   if (message.length < 10) errors.message = 'Please tell us a little about your project.';
   if (message.length > LIMITS.message) errors.message = `Please keep your message under ${LIMITS.message} characters.`;
   if (Object.keys(errors).length) return json({ ok: false, error: 'Please check the highlighted fields.', errors }, 400);
@@ -172,6 +193,11 @@ function base64(s: string) {
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+      'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'",
+    },
   });
 }
